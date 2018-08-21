@@ -1,0 +1,20 @@
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+
+
+        <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 30px 0px">
+            <div class="ui-grid-row">
+                <span class="ui-float-label">
+                    <input id="floatUserName" type="text" size="30" pInputText [(ngModel)]="credentials.user">
+                    <label for="floatUserName">Username</label>
+                </span>
+            </div>
+            <div style="height: 30px"> </div>
+            <div class="ui-grid-row">
+               <span class="ui-float-label">
+                <input id="floatPassword" type="password" size="30" pInputText [(ngModel)]="credentials.password">
+                <label for="floatPassword">Password</label>
+               </span>
+            </div>
+        </div>
+        <button pButton type="button" (click)="login()" label="Success" class="ui-button-success"></button>
+

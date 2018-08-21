@@ -1,0 +1,39 @@
+
+<div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 30px 0px">
+    <div class="ui-grid-row">
+                <span class="ui-float-label">
+                    <input id="floatUserName" type="text" size="30" pInputText [(ngModel)]="user.user">
+                    <label for="floatUserName">Username</label>
+                </span>
+    </div>
+    <div style="height: 30px"> </div>
+    <div class="ui-grid-row">
+               <span class="ui-float-label">
+                <input id="floatPassword" type="password" size="30" pInputText [(ngModel)]="user.password">
+                <label for="floatPassword">Password</label>
+               </span>
+    </div>
+    <div style="height: 30px"> </div>
+    <div class="ui-grid-row">
+               <span class="ui-float-label">
+                <input id="floatNombre" type="text" size="30" pInputText [(ngModel)]="user.nombre">
+                <label for="floatNombre">Nombre</label>
+               </span>
+    </div>
+    <div style="height: 30px"> </div>
+    <div class="ui-grid-row">
+                <span class="ui-float-label">
+                    <input id="floatEMAIL" type="text" size="30" pInputText [(ngModel)]="user.email">
+                    <label for="floatEMAIL">Email</label>
+                </span>
+    </div>
+    <div style="height: 30px"> </div>
+    <div class="ui-grid-row">
+                <span class="ui-float-label">
+                    <input id="floatSexo" type="text" size="30" pInputText [(ngModel)]="user.sexo">
+                    <label for="floatSexo">Sexo</label>
+                </span>
+    </div>
+</div>
+<button pButton type="button" (click)="register()" label="Success" class="ui-button-success"></button>
+
