@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {trigger, state, style, transition, animate} from '@angular/animations';
 import {MenuItem, MessageService} from '../components/common/api';
+import {UserModel} from './modelsApp/userModel';
+import {environment} from '../../environments/environment';
+import {LoginService} from './login/login.service';
 
 @Component({
     selector: 'app-root',
@@ -34,6 +37,7 @@ import {MenuItem, MessageService} from '../components/common/api';
 })
 export class AppComponent implements OnInit {
 
+    enviroment=environment;
     menuActive: boolean=false;
 
     activeMenuId: string;
@@ -44,14 +48,13 @@ export class AppComponent implements OnInit {
 
     displayLogin: boolean = false;
     displayRegister: boolean = false;
-
-
     disp={
         leftMenuDisplay:'none',
         contentMarginLeft:'0'
     };
+    currerntUser:UserModel;
 
-    constructor(private messageService: MessageService){
+    constructor(private messageService: MessageService,private loginService:LoginService){
 
     }
 
@@ -66,14 +69,22 @@ export class AppComponent implements OnInit {
         this.messageService.add({severity:'Error', summary:'Service Message', detail:'No existe Usuario'});
     }
     onlogin(e){
-        if(e){this.showMenu();}
+        if(e){
+            this.showMenu();
+            this.currerntUser=e as UserModel;
+        }
         else {this.hideMenu();}
         this.displayLogin=false;
     }
 
     ngOnInit() {
         setTimeout(() => this.notification = true, 1000);
-
+        if(localStorage.getItem(environment.currentUser)){
+            this.currerntUser= JSON.parse(localStorage.getItem(environment.currentUser)) as UserModel;
+            this.showMenu();
+        }else{
+            this.currerntUser=null;
+        }
     }
 
 
@@ -87,5 +98,8 @@ export class AppComponent implements OnInit {
         if(e==true){        this.messageService.add({severity:'success', summary:'Service Message', detail:'Exito'});}
         else {        this.messageService.add({severity:'Error', summary:'Service Message', detail:'No existe Usuario'});}
         this.displayRegister=false;
+    }
+    logOut(){
+        this.loginService.logOut();
     }
 }

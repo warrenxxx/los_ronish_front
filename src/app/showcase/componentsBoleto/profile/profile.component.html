@@ -1,0 +1,135 @@
+<div class="ui-g">
+    <div class="ui-g-6">
+        <p-card title="{{currentUser.user}}" subtitle="{{currentUser.person.nombre}}" [style]="{width: '360px'}"
+                styleClass="ui-card-shadow">
+            <p-header>
+                <img style="border-radius: 8px"
+                     src="{{enviroment.host}}/api/image/get/{{currentUser.person.idImage}}">
+            </p-header>
+
+            <p-footer>
+                <p-fileUpload chooseLabel="agregar" uploadLabel="aceptar" name="demo[]" url="{{enviroment.host}}/api/image/save"
+                              (onUpload)="onUpload($event)"
+                              multiple="multiple" accept="image/*" maxFileSize="1000000">
+                    <ng-template pTemplate="content">
+                        <ul *ngIf="uploadedFiles.length">
+                            <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                        </ul>
+                    </ng-template>
+                </p-fileUpload>
+            </p-footer>
+        </p-card>
+    </div>
+    <div class="ui-g-6">
+        <div class="ui-g">
+            <div class="ui-g-12">
+                <h1> Actualizar Datos </h1>
+            </div>
+        </div>
+
+        <div class="ui-g">
+            <div class="ui-g-3 " style="margin-bottom: 5px">
+                <div class="ui-inputgroup">
+                    <h3>Username</h3>
+                </div>
+            </div>
+            <div class="ui-g-6 ">
+                <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+                    <input type="text" pInputText placeholder="Username" [(ngModel)]="currentUser.user">
+                </div>
+            </div>
+        </div>
+        <div class="ui-g">
+            <div class="ui-g-3 " style="margin-bottom: 5px">
+                <div class="ui-inputgroup">
+                    <h3>Dni</h3>
+                </div>
+            </div>
+            <div class="ui-g-6 ">
+                <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+                    <input type="text" pInputText placeholder="Dni" [(ngModel)]="currentUser.person.dni">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="ui-g">
+            <div class="ui-g-3 " style="margin-bottom: 5px">
+                <div class="ui-inputgroup">
+                    <h3>Nombre</h3>
+                </div>
+            </div>
+            <div class="ui-g-6 ">
+                <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+                    <input type="text" pInputText placeholder="Username" [(ngModel)]="currentUser.person.nombre">
+                </div>
+            </div>
+        </div>
+        <div class="ui-g">
+            <div class="ui-g-3 " style="margin-bottom: 5px">
+                <div class="ui-inputgroup">
+                    <h3>Apellido</h3>
+                </div>
+            </div>
+            <div class="ui-g-6 ">
+                <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+                    <input type="text" pInputText placeholder="Apellido" [(ngModel)]="currentUser.person.apellido">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="ui-g">
+            <div class="ui-g-3 " style="margin-bottom: 5px">
+                <div class="ui-inputgroup">
+                    <h3>Email</h3>
+                </div>
+            </div>
+            <div class="ui-g-6 ">
+                <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+                    <input type="text" pInputText placeholder="Username" [(ngModel)]="currentUser.person.email">
+                </div>
+            </div>
+        </div>
+        <div class="ui-g">
+            <div class="ui-g-3 " style="margin-bottom: 5px">
+                <div class="ui-inputgroup">
+                    <h3>Telefono</h3>
+                </div>
+            </div>
+            <div class="ui-g-6 ">
+                <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+                    <input type="text" pInputText placeholder="Telefono" [(ngModel)]="currentUser.person.telefono">
+                </div>
+            </div>
+        </div>
+
+        <!--<div class="ui-g">-->
+            <!--<div class="ui-g-3 " style="margin-bottom: 5px">-->
+                <!--<div class="ui-inputgroup">-->
+                    <!--<h3>Sexo</h3>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;<div class="ui-g-6 ">&ndash;&gt;-->
+                <!--&lt;!&ndash;<div class="ui-inputgroup">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<p-dropdown [options]="sexo" [(ngModel)]="sexoescogido" placeholder="Sexo" optionLabel="name" [showClear]="true"></p-dropdown>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--</div>-->
+        <div class="ui-g">
+            <div class="ui-g-6">
+                <button pButton type="button" label="Actualizar" class="ui-button-success" (click)="actualizar()"></button>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

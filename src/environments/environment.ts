@@ -2,11 +2,20 @@
 // `ng build ---prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import {HttpHeaders} from '@angular/common/http';
+
 export const environment = {
     production: false,
-    host:"http://localhost:8080"
+    host:"http://localhost:8080",
+    currentUser:"currentUser",
+    headerGLobal:    {
+        headers: new HttpHeaders({
+            'Content-Type':  'application/json',
+            'Authorization': 'my-auth-token'
+        })
+    }
   };
-  
+
   /*
    * In development mode, to ignore zone related error stack frames such as
    * `zone.run`, `zoneDelegate.invokeTask` for easier debugging, you can

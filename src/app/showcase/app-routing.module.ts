@@ -1,12 +1,17 @@
 import { Routes,RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { HomeComponent } from './components/home/home.component';
+import {AuthGuardService} from './auth-guard.service';
+import {ProfileComponent} from './componentsBoleto/profile/profile.component';
+import {PersonComponent} from './componentsBoleto/mantenimiento/person/person.component';
 
 @NgModule({
     imports: [
         RouterModule.forRoot([
             {path: '', component: HomeComponent},
             {path: 'setup', loadChildren: './components/setup/setup.module#SetupModule'},
+            {path: 'profile', component:ProfileComponent},
+            {path: 'person/mantenimiento', component:PersonComponent},
             {path: 'theming', loadChildren: './components/theming/theming.module#ThemingModule'},
             {path: 'icons', loadChildren: './components/icons/icons.module#IconsModule'},
             {path: 'accordion', loadChildren: './components/accordion/accordiondemo.module#AccordionDemoModule'},
@@ -92,7 +97,7 @@ import { HomeComponent } from './components/home/home.component';
             {path: 'tree', loadChildren: './components/tree/treedemo.module#TreeDemoModule'},
             {path: 'treetable', loadChildren: './components/treetable/treetabledemo.module#TreeTableDemoModule'},
             {path: 'tristatecheckbox', loadChildren: './components/tristatecheckbox/tristatecheckboxdemo.module#TriStateCheckboxDemoModule'},
-            {path: 'validation', loadChildren: './components/validation/validationdemo.module#ValidationDemoModule'}
+            {path: 'validation', loadChildren: './components/validation/validationdemo.module#ValidationDemoModule',canActivate:[AuthGuardService] }
         ])    
     ],
     exports: [RouterModule]

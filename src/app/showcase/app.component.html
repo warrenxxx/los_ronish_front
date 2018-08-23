@@ -21,17 +21,40 @@
             <li>
                 <a [routerLink]="['/support']">SUPPORT</a>
             </li>
-            <li>
+            <li *ngIf="!currerntUser">
                 <a (click)="showDialogLogin()" > LOGIN </a>
             </li>
-            <li>
+            <li *ngIf="!currerntUser">
                 <a (click)="showDialogRegister()" > REGISTER </a>
+            </li>
+            <li *ngIf="currerntUser">
+                <a (click)="logOut()" > LOGOUT </a>
+            </li>
+            <li *ngIf="currerntUser">
+                <a>
+                    {{currerntUser.person.nombre}}
+                    <img height="50" src="{{enviroment.host}}/api/image/get/{{currerntUser.person.idImage}}" alt="">
+                </a>
             </li>
         </ul>
     </div>
 
-    <div id="layout-sidebar" [ngClass]="{'active': menuActive}" style="z-index: 100;" [style.display]="disp.leftMenuDisplay" >
+    <div id="layout-sidebar" [ngClass]="{'active': menuActive}" style="z-index: 100;" [style.display]="disp.leftMenuDisplay" *ngIf="currerntUser" >
         <div class="layout-menu">
+               <a id="profile" [routerLink]="['/profile']">
+                <img src="{{enviroment.host}}/api/image/get/{{currerntUser.person.idImage}}" class="layout-menu-icon-active"/>
+                <img src="{{enviroment.host}}/api/image/get/{{currerntUser.person.idImage}}" class="layout-menu-icon-inactive"/>
+                <span>Profile</span>
+            </a>
+            <a id="button_mantenimientos" #buttonmantenimientos [class.active-menuitem]="buttonmantenimientos.id == activeMenuId" (click)="activeMenuId = (activeMenuId === buttonmantenimientos.id ? null : buttonmantenimientos.id)">
+                <img src="assets/showcase/images/icons/llave2.png" class="layout-menu-icon-active"/>
+                <img src="assets/showcase/images/icons/llave1.png" class="layout-menu-icon-inactive"/>
+                <span>Mantenimientos</span>
+            </a>
+            <div [ngClass]="{'submenushow': (buttonmantenimientos.id == activeMenuId), 'submenuhide': (buttonmantenimientos.id != activeMenuId)}">
+                <a [routerLink]="['/person/mantenimiento']" (click)="menuActive = false">&#9679; Button</a>
+            </div>
+
             <a id="menu_input" #inputmenutitle [class.active-menuitem]="inputmenutitle.id == activeMenuId" (click)="activeMenuId = (activeMenuId === inputmenutitle.id ? null : inputmenutitle.id)">
                 <img src="assets/showcase/images/icons/input-active.svg" class="layout-menu-icon-active"/>
                 <img src="assets/showcase/images/icons/input.svg" class="layout-menu-icon-inactive"/>

@@ -24,15 +24,27 @@ import {ButtonModule} from '../components/button/button';
 import {InputTextModule} from '../components/inputtext/inputtext';
 import {MessageService} from '../components/common/messageservice';
 import { RegisterComponent } from './register/register.component';
+import {FileUploadModule} from '../components/fileupload/fileupload';
+import { ProfileComponent } from './componentsBoleto/profile/profile.component';
+import {CardModule} from '../components/card/card';
+import {CheckboxModule} from '../components/checkbox/checkbox';
+import {RadioButtonModule} from '../components/radiobutton/radiobutton';
+import { UserMantenimientoComponent } from './componentsBoleto/mantenimiento/user-mantenimiento/user-mantenimiento.component';
+import {TableModule} from '../components/table/table';
+import { PersonComponent } from './componentsBoleto/mantenimiento/person/person.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileComponent,
+    UserMantenimientoComponent,
+    PersonComponent
   ],
   imports: [
+      TableModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
@@ -44,9 +56,12 @@ import { RegisterComponent } from './register/register.component';
       ToastModule,
       ButtonModule,
       InputTextModule,
-
+        FileUploadModule,
       PanelModule,
       MessageModule,
+      CardModule,
+      CheckboxModule,
+      RadioButtonModule,
       DropdownModule
   ],
   providers: [
