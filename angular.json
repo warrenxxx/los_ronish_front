@@ -28,11 +28,11 @@
                 "node_modules/quill/dist/quill.snow.css",
                 "node_modules/primeicons/primeicons.css",
                 "node_modules/font-awesome/css/font-awesome.min.css",
-                "src/styles.css",
-                  "src/assets/external/css/bootstrap.min.css",
-                  "src/assets/external/css/demo.css",
-                  "src/assets/external/css/nucleo-icons.css",
-                  "src/assets/external/css/paper-kit.css"
+                "src/styles.css"
+//                  "src/assets/external/css/bootstrap.min.css",
+//                  "src/assets/external/css/demo.css",
+//                  "src/assets/external/css/nucleo-icons.css",
+//                  "src/assets/external/css/paper-kit.css"
               ],
               "scripts": [
                 "./node_modules/moment/moment.js",
@@ -41,15 +41,15 @@
                 "./node_modules/quill/dist/quill.js",
                 "./node_modules/prismjs/prism.js",
                 "./node_modules/prismjs/components/prism-typescript.js",
-                "./src/assets/external/scripts/bootstrap.min.js",
-                  "./src/assets/external/scripts/bootstrap-datetimepicker.min.js",
-                  "./src/assets/external/scripts/bootstrap-switch.min.js",
-                  "./src/assets/external/scripts/jquery-3.2.1.js",
-                  "./src/assets/external/scripts/jquery-ui-1.12.1.custom.min.js",
-                  "./src/assets/external/scripts/moment.min.js",
-                  "./src/assets/external/scripts/nouislider.js",
-                  "./src/assets/external/scripts/paper-kit.js",
-                  "./src/assets/external/scripts/popper.js"
+//                "./src/assets/external/scripts/bootstrap.min.js",
+//                  "./src/assets/external/scripts/bootstrap-datetimepicker.min.js",
+//                  "./src/assets/external/scripts/bootstrap-switch.min.js",
+//                  "./src/assets/external/scripts/jquery-3.2.1.js",
+//                  "./src/assets/external/scripts/jquery-ui-1.12.1.custom.min.js",
+//                  "./src/assets/external/scripts/moment.min.js",
+//                  "./src/assets/external/scripts/nouislider.js",
+//                  "./src/assets/external/scripts/paper-kit.js",
+//                  "./src/assets/external/scripts/popper.js"
               ]
             },
             "configurations": {

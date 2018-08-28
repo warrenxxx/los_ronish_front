@@ -6,7 +6,7 @@ import {HttpHeaders} from '@angular/common/http';
 
 export const environment = {
     production: false,
-    host:"http://localhost:8080",
+    host:"http://192.168.31.123:8080",
     currentUser:"currentUser",
     headerGLobal:    {
         headers: new HttpHeaders({
