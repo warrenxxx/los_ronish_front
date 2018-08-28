@@ -1,0 +1,115 @@
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+<p-card title="Comprar" subtitle="Vuela en Bus">
+    <div class="ui-g">
+        <div class="ui-g-2">
+            <app-combo-terminal-one [buttonHide]="false" [placeHold]="'Origen'" (enviar)="recibirOrigen($event)"></app-combo-terminal-one>
+        </div>
+        <div class="ui-g-2">
+            <app-combo-terminal-one [buttonHide]="false" [placeHold]="'Destino'" (enviar)="recibirDestino($event)"></app-combo-terminal-one>
+        </div>
+        <div class="ui-g-3">
+            <p-calendar placeholder="ida" [showIcon]="true"  [(ngModel)]="ida"> </p-calendar>
+        </div>
+        <div class="ui-g-3">
+            <p-calendar placeholder="retorno" [showIcon]="true" [(ngModel)]="vuelta"> </p-calendar>
+        </div>
+        <div class="ui-g-2">
+            <p-button (onClick)="handleClick($event)" label="Buscar"></p-button>
+        </div>
+    </div>
+</p-card>
+
+<p-card>
+    <p-table [columns]="cols" [value]="itinerariosIda" [(selection)]="itinerarioIda" (onRowSelect)="onRowSelectIda($event)">
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th style="width: 3em"></th>
+                <th *ngFor="let col of columns">
+                    {{col.header}}
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr [pSelectableRow]="rowData">
+                <td>
+                    <p-tableRadioButton [value]="rowData"></p-tableRadioButton>
+                </td>
+                <td >
+                    {{ getDate(rowData['fechaSalida'],rowData['fechaLLegada'])}}
+                </td>
+                <td >
+                    {{rowData['costo']}}
+                </td>
+
+            </tr>
+        </ng-template>
+
+    </p-table>
+
+</p-card>
+
+<div *ngIf="panelIda">
+    <p-panel>
+        <p-header>
+            <div class="ui-helper-clearfix">
+                <span class="ui-panel-title" style="font-size:16px;display:inline-block;margin-top:2px">Reservar Ida</span>
+            </div>
+        </p-header>
+        <app-aisento-chose-client [entrada]="itinerarioIda.vehiculo.asientos" (enviar)="enviarIda($event)" [precio]="itinerarioIda.costo" [reservados]="itinerarioIda.reservados" ></app-aisento-chose-client>
+        <p-footer>
+            <button pButton type="button" (click)="displayVentaIda=true"  label="Confirmar Viaje" class="ui-button-info" style="margin-right: .25em"></button>        </p-footer>
+    </p-panel>
+
+</div>
+
+<p-dialog header="Realizar Venta" [(visible)]="displayVentaIda"  [baseZIndex]="10000">
+    <app-sell-visa (enviar)="realizarVentaIda($event)"> </app-sell-visa>
+</p-dialog>
+
+
+<p-card>
+    <p-table [columns]="cols" [value]="itinerariosRegreso" [(selection)]="itinerarioRegreso"  (onRowSelect)="onRowSelectRegreso($event)">
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th style="width: 3em"></th>
+                <th *ngFor="let col of columns">
+                    {{col.header}}
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr [pSelectableRow]="rowData">
+                <td>
+                    <p-tableRadioButton [value]="rowData"></p-tableRadioButton>
+                </td>
+                <td >
+                    {{ getDate(rowData['fechaSalida'],rowData['fechaLLegada'])}}
+                </td>
+                <td >
+                    {{rowData['costo']}}
+                </td>
+            </tr>
+        </ng-template>
+
+    </p-table>
+
+</p-card>
+<div *ngIf="panelRegreso">
+    <p-panel>
+        <p-header>
+            <div class="ui-helper-clearfix">
+                <span class="ui-panel-title" style="font-size:16px;display:inline-block;margin-top:2px">Reservar Regreso</span>
+            </div>
+        </p-header>
+        <app-aisento-chose-client (enviar)="enviarRegerso($event)" [entrada]="itinerarioIda.vehiculo.asientos" [precio]="itinerarioRegreso.costo"  [reservados]="itinerarioRegreso.reservados" ></app-aisento-chose-client>
+        <p-footer>
+            <button pButton type="button"  label="Reservar" class="ui-button-info" style="margin-right: .25em"></button>
+        </p-footer>
+    </p-panel>
+
+</div>
+
+<p-dialog header="Realizar Venta" [(visible)]="displayVentaRegreso"  style="width: 650px;" [baseZIndex]="10000">
+    <app-sell-visa (enviar)="realizarVentaRegreso()"> </app-sell-visa>
+</p-dialog>
+

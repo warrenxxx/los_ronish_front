@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Person, UserModel} from '../modelsApp/userModel';
 import {environment} from '../../../environments/environment';
 import {Observable} from 'rxjs';
+import {ComBox} from '../modelsApp/com-box';
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +24,8 @@ export class PersonService {
     }
     find():Observable<Person[]>{
         return this.http.get<Person[]>(environment.host+this.path,environment.headerGLobal)
+    }
+    findBox():Observable<ComBox[]>{
+        return this.http.get<ComBox[]>(environment.host+"/person/comboBox",environment.headerGLobal)
     }
 }

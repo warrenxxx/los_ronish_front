@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Person} from '../../../modelsApp/userModel';
 import {PersonService} from '../../../service/person.service';
 import {environment} from '../../../../../environments/environment';
@@ -18,7 +18,6 @@ export class PersonComponent implements OnInit {
   cols:any[];
   objeto:Person;
   displayDialog: boolean;
-
     uploadedFiles=[];
 
   ngOnInit() {
@@ -50,6 +49,7 @@ export class PersonComponent implements OnInit {
         this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
     }
     onRowSelect(event) {
+      console.log(event.data);
         this.objeto=event.data;
         this.displayDialog = true;
     }
@@ -79,4 +79,14 @@ export class PersonComponent implements OnInit {
 
         });
     }
+    @Input()
+    selectButton:boolean=false;
+      selectedButton(){
+          console.log(this.selectButton);
+          this.displayDialog=false;
+          this.enviar.emit(this.objeto)
+      }
+    @Output() enviar = new EventEmitter();
+
+
 }

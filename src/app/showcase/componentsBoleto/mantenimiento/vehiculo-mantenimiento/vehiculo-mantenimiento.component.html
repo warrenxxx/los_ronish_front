@@ -1,0 +1,136 @@
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+<p-table [columns]="cols" [value]="objetos" selectionMode="single" [(selection)]="objeto"
+         (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="15">
+    <ng-template pTemplate="caption">
+        List of {{title}}
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                {{col.header}}
+                <p-sortIcon [field]="col.field"></p-sortIcon>
+            </th>
+
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr [pSelectableRow]="rowData">
+            <td *ngFor="let col of columns">
+                <div ngSwitch="{{col.type}}">
+                    <div *ngSwitchCase="'string'">
+                        {{rowData[col.field]}}
+                    </div>
+                    <div *ngSwitchCase="'idterramoza'">
+                        <div *ngFor="let terra of rowData[col.field]">
+                            {{terra.nombre}}
+                        </div>
+                    </div>
+                    <div *ngSwitchCase="'idchoferes'">
+                        <div *ngFor="let terra of rowData[col.field]">
+                            {{terra.nombre}}
+                        </div>
+                    </div>
+                    <div *ngSwitchCase="'string2'">
+                        {{rowData[col.field[0]][col.field[1]]}}
+                    </div>
+                    <div *ngSwitchCase="'image'">
+                        <img height="40" src="{{enviroment.host}}/api/image/get/{{rowData[col.field]}}" alt="">
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+    </ng-template>
+    <ng-template pTemplate="summary" let-rowData>
+        <div style="text-align:left">
+            <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()" label="Add"></button>
+        </div>
+    </ng-template>
+</p-table>
+
+<p-dialog header="{{title}} Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade">
+    <div class="ui-g ui-fluid">
+        <div class="ui-g-12" *ngFor="let x of cols">
+            <div ngSwitch="{{x.type}}">
+                <div *ngSwitchCase="'image'">
+                    <div class="ui-g-4">
+                        <label for="{{'idd'+x.header}}">{{x.header}}</label>
+                    </div>
+                    <div class="ui-g-8">
+                        <input pInputText id="{{'idd'+x.header}}" [(ngModel)]="objeto[x.field]"/>
+                    </div>
+                    <p-fileUpload name="demo[]" url="{{enviroment.host}}/api/image/save" (onUpload)="onUpload($event)"
+                                  auto="true"
+                                  multiple="multiple" accept="image/*" maxFileSize="1000000">
+                        <ng-template pTemplate="content">
+                            <ul *ngIf="uploadedFiles.length">
+                                <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                            </ul>
+                        </ng-template>
+                    </p-fileUpload>
+                </div>
+
+                <div *ngSwitchCase="'string'">
+                    <div class="ui-g-4">
+                        <label for="{{'id'+x.header}}">{{x.header}}</label>
+                    </div>
+                    <div class="ui-g-8">
+                        <input pInputText id="{{'ids'+x.header}}" [(ngModel)]="objeto[x.field]"/>
+                    </div>
+                </div>
+                <div *ngSwitchCase="'string2'">
+                    <div class="ui-g-4">
+                        <label for="{{'ids'+x.header}}">{{x.header}}</label>
+                    </div>
+                    <div class="ui-g-8">
+                        <input pInputText id="{{'id'+x.header}}" [(ngModel)]="objeto[x.field[0]][x.field[1]]"/>
+                    </div>
+                </div>
+                <div *ngSwitchCase="'idterramoza'">
+                    <div class="ui-g-4">
+                        <label for="person">{{x.header}}</label>
+                    </div>
+                    <div class="ui-g-8">
+                        <app-combo-person id="person" (enviar)="cambioPersonsaTerramoza($event)"></app-combo-person>
+                    </div>
+
+                </div>
+                <div *ngSwitchCase="'idchoferes'">
+                    <div class="ui-g-4">
+                        <label for="chofer">{{x.header}}</label>
+                    </div>
+                    <div class="ui-g-8">
+                        <app-combo-person id="chofer" (enviar)="cambioPersonsaChofer($event)"></app-combo-person>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="chofer">Asientos</label>
+            </div>
+            <div class="ui-g-8">
+                <button (click)="dialogAsientos=true"> Edit Asientos</button>
+                <!--<app-combo-person id="chofer" (enviar)="cambioPersonsaChofer($event)"></app-combo-person>-->
+            </div>
+        </div>
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <button type="button" pButton icon="fa fa-close" (click)="delete()" label="Delete"></button>
+            <button type="button" pButton icon="fa fa-check" (click)="save()" label="Save"></button>
+            <button type="button" pButton icon="fa fa-check" (visible)="selectButton"    (click)="selectedButton()" label="select"></button>
+        </div>
+    </p-footer>
+</p-dialog>
+
+<p-dialog header="{{title}} Details" [(visible)]="dialogAsientos" [responsive]="true" showEffect="fade">
+    <div *ngIf="objeto.id=='';else elseAsientos">
+        <app-asientos-chose (enviar)="cambiarAsientos($event)"></app-asientos-chose>
+    </div>
+    <ng-template #elseAsientos>
+        <app-asientos-chose [entrada]="objeto.asientos" [nPisos]="objeto.NroPisos" [tipos]="getTipos()" (enviar)="cambiarAsientos($event)"></app-asientos-chose>
+    </ng-template>
+
+</p-dialog>

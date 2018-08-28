@@ -4,7 +4,12 @@ import { HomeComponent } from './components/home/home.component';
 import {AuthGuardService} from './auth-guard.service';
 import {ProfileComponent} from './componentsBoleto/profile/profile.component';
 import {PersonComponent} from './componentsBoleto/mantenimiento/person/person.component';
-
+import {BoletoComponent} from './componentsBoleto/mantenimiento/boleto/boleto.component';
+import {TerminalMantenimientoComponent} from './componentsBoleto/mantenimiento/terminal-mantenimiento/terminal-mantenimiento.component';
+import {ItinerarioMantenimientoComponent} from './componentsBoleto/mantenimiento/itinerario-mantenimiento/itinerario-mantenimiento.component';
+import {VehiculoMantenimientoComponent} from './componentsBoleto/mantenimiento/vehiculo-mantenimiento/vehiculo-mantenimiento.component';
+import {ReservaMantenimientoComponent} from './componentsBoleto/mantenimiento/reserva-mantenimiento/reserva-mantenimiento.component';
+import {VentasComponent} from './componentsBoleto/ventas/ventas.component';
 @NgModule({
     imports: [
         RouterModule.forRoot([
@@ -12,6 +17,12 @@ import {PersonComponent} from './componentsBoleto/mantenimiento/person/person.co
             {path: 'setup', loadChildren: './components/setup/setup.module#SetupModule'},
             {path: 'profile', component:ProfileComponent},
             {path: 'person/mantenimiento', component:PersonComponent},
+            {path: 'terminal/mantenimiento', component:TerminalMantenimientoComponent},
+            {path: 'itinerario/mantenimiento', component:ItinerarioMantenimientoComponent},
+            {path: 'vehiculo/mantenimiento', component:VehiculoMantenimientoComponent},
+            {path: 'reserva/mantenimiento', component:ReservaMantenimientoComponent},
+            {path: 'ventas', component:VentasComponent},
+            {path: 'piolin', component:BoletoComponent},
             {path: 'theming', loadChildren: './components/theming/theming.module#ThemingModule'},
             {path: 'icons', loadChildren: './components/icons/icons.module#IconsModule'},
             {path: 'accordion', loadChildren: './components/accordion/accordiondemo.module#AccordionDemoModule'},

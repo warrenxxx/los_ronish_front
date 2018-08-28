@@ -32,7 +32,7 @@
     </ng-template>
 </p-table>
 
-<p-dialog header="{{title}} Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="300">
+<p-dialog header="{{title}} Details" [(visible)]="displayDialog"  showEffect="fade" [width]="300">
     <div class="ui-g ui-fluid">
         <div class="ui-g-12" *ngFor="let x of cols">
             <div *ngIf="x.header != 'idImage'">
@@ -65,6 +65,7 @@
         <div class="ui-dialog-buttonpane ui-helper-clearfix">
             <button type="button" pButton icon="fa fa-close" (click)="delete()" label="Delete"></button>
             <button type="button" pButton icon="fa fa-check" (click)="save()" label="Save"></button>
+            <button type="button" pButton icon="fa fa-check" hidden="selectButton"    (click)="selectedButton()" label="select"></button>
         </div>
     </p-footer>
 </p-dialog>

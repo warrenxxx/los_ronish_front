@@ -1,0 +1,18 @@
+<input type="text" [(ngModel)]="nPisos" >
+<input type="text" [(ngModel)]="nlarg" >
+<button (click)="ACT2()">Generar Nuevo</button>
+<button (click)="enviarDatos()"> Oks</button>
+<p-card title="Primer Piso" *ngFor="let pisos of details2;">
+    <div class="ui-g-nopad">
+        <div *ngFor="let col of pisos" class="ui-g-1 " >
+            <div *ngFor="let asiento of col">
+                <div *ngIf="asiento.type!='diseable';else els">
+                    <p-splitButton  styleClass="{{asiento.style}}" [model]="asiento['menuItem']" label=" {{asiento.num}}">  </p-splitButton>
+                </div>
+                <ng-template #els >
+                    <div style="height: 30px"></div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</p-card>

@@ -4,6 +4,9 @@ import {MenuItem, MessageService} from '../components/common/api';
 import {UserModel} from './modelsApp/userModel';
 import {environment} from '../../environments/environment';
 import {LoginService} from './login/login.service';
+import {AuxServiceService} from './service/aux-service.service';
+import {BaseCrud} from './service/baseCrud';
+
 
 @Component({
     selector: 'app-root',
@@ -39,12 +42,8 @@ export class AppComponent implements OnInit {
 
     enviroment=environment;
     menuActive: boolean=false;
-
     activeMenuId: string;
-
     notification: boolean = false;
-
-    items: MenuItem[];
 
     displayLogin: boolean = false;
     displayRegister: boolean = false;
@@ -54,10 +53,52 @@ export class AppComponent implements OnInit {
     };
     currerntUser:UserModel;
 
-    constructor(private messageService: MessageService,private loginService:LoginService){
+    personSelected:string[]=[];
+    save(severity: string) {
+//        this.messageService.add({severity:severity, summary:'Success', detail:'Data Saved'});
+    }
+
+    sp="ggps";
+    sp2="ui-button-secondary";
+
+    items: MenuItem[] = [
+        {label: 'Update', icon: 'fa fa-refresh', command: () => {
+            this.sp="ya no gg ps";
+            this.sp2="ui-button-danger";
+            }},
+        {label: 'Delete', icon: 'fa fa-close',styleClass:'ui-button-secondary' ,style:{'background':'red'}, command: () => {
+                alert("de")
+            }},
+        {label: 'Angular.io', icon: 'fa fa-link', command:()=>{
+                alert("an")
+
+            }},
+        {label: 'Theming', icon: 'fa fa-paint-brush', command:()=>{
+                alert("the")
+
+            }}
+    ];
+    personprueba(x):void{
+        this.personSelected=x;
+    }
+    constructor(private auxService:AuxServiceService,private messageService: MessageService,private loginService:LoginService){
 
     }
 
+    mantenimientos:string='none';
+    isAdmin(){
+        let x=JSON.parse(localStorage.getItem('currentUser'));
+        if(x['role']!='admin'){
+            this.mantenimientos='none';
+            console.log(this.mantenimientos);
+
+        }else{
+            this.mantenimientos='block';
+            console.log(this.mantenimientos);
+        }
+
+
+    }
     showMenu(){
         this.disp.contentMarginLeft='300px';
         this.disp.leftMenuDisplay='block';
@@ -70,6 +111,7 @@ export class AppComponent implements OnInit {
     }
     onlogin(e){
         if(e){
+            this.isAdmin();
             this.showMenu();
             this.currerntUser=e as UserModel;
         }
@@ -81,6 +123,7 @@ export class AppComponent implements OnInit {
         setTimeout(() => this.notification = true, 1000);
         if(localStorage.getItem(environment.currentUser)){
             this.currerntUser= JSON.parse(localStorage.getItem(environment.currentUser)) as UserModel;
+            this.isAdmin();
             this.showMenu();
         }else{
             this.currerntUser=null;

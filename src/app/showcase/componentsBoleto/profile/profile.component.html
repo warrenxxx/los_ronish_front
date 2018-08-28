@@ -8,9 +8,9 @@
             </p-header>
 
             <p-footer>
-                <p-fileUpload chooseLabel="agregar" uploadLabel="aceptar" name="demo[]" url="{{enviroment.host}}/api/image/save"
+                <p-fileUpload chooseLabel="agregar" auto="true" uploadLabel="aceptar" name="demo[]" url="{{enviroment.host}}/api/image/save"
                               (onUpload)="onUpload($event)"
-                              multiple="multiple" accept="image/*" maxFileSize="1000000">
+                               accept="image/*" >
                     <ng-template pTemplate="content">
                         <ul *ngIf="uploadedFiles.length">
                             <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
@@ -109,20 +109,6 @@
                 </div>
             </div>
         </div>
-
-        <!--<div class="ui-g">-->
-            <!--<div class="ui-g-3 " style="margin-bottom: 5px">-->
-                <!--<div class="ui-inputgroup">-->
-                    <!--<h3>Sexo</h3>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--&lt;!&ndash;<div class="ui-g-6 ">&ndash;&gt;-->
-                <!--&lt;!&ndash;<div class="ui-inputgroup">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<p-dropdown [options]="sexo" [(ngModel)]="sexoescogido" placeholder="Sexo" optionLabel="name" [showClear]="true"></p-dropdown>&ndash;&gt;-->
-                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-            <!--&lt;!&ndash;</div>&ndash;&gt;-->
-        <!--</div>-->
         <div class="ui-g">
             <div class="ui-g-6">
                 <button pButton type="button" label="Actualizar" class="ui-button-success" (click)="actualizar()"></button>

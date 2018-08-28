@@ -18,6 +18,7 @@ export class ProfileService {
 
   actualizarUser(user:UserModel){
       return this.http.put(environment.host+"/user",user,httpOptions)
+          .pipe(e=>this.http.post(environment.host+"/api/person",user.person,httpOptions))
   }
 
 }

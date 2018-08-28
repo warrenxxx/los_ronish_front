@@ -1,0 +1,16 @@
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12 ui-md-4">
+        <div class="ui-inputgroup">
+            <button pButton type="button" (click)="showDialog()" label="new"></button>
+            <p-dropdown [options]="items" [(ngModel)]="selected" (onChange)="enviarId()"  ></p-dropdown>
+        </div>
+    </div>
+</div>
+<p-dialog header="{{title}}" [(visible)]="display"   [maximizable]="true" [baseZIndex]="10000">
+    <app-itinerario-mantenimiento [selectButton]="true" (enviar)="enviado($event)"></app-itinerario-mantenimiento>
+
+    <p-footer>
+        <button type="button" pButton icon="pi pi-check" (click)="display=false" label="Ok"></button>
+    </p-footer>
+</p-dialog>
+

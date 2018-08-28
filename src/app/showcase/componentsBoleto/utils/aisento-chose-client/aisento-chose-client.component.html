@@ -1,0 +1,56 @@
+<p-button (click)="enviarDatos()" label="Oks"></p-button>
+
+<div style="background-image: url('https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&h=350')">
+    <p-card title="Primer Piso" *ngFor="let pisos of details2;">
+
+        <div class="ui-g">
+            <div *ngFor="let col of pisos" class="ui-g-1 " >
+                <div *ngFor="let asiento of col">
+                    <div *ngIf="asiento.type!='diseable'   ;else els">
+                        <p-toggleButton
+                            onLabel="{{asiento['num']}}"
+                            [style]="{'height':'45px','width':'70px'}"
+                            offLabel="{{asiento['num']}}"
+                            icon="pi pi-check"
+                            [(ngModel)]="asiento['porReservar']"
+                            [disabled]="asiento['reserved']"
+                            (onChange)="handleChange($event)"
+                        ></p-toggleButton>
+                    </div>
+                    <ng-template #els >
+                        <div style="height: 30px"></div>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </p-card>
+</div>
+
+<p-card>
+    <p-table [columns]="cols" [value]="objects"  dataKey="vin">
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns">
+                    {{col.header}}
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr [pSelectableRow]="rowData">
+                <td *ngFor="let col of columns">
+                    {{rowData[col.field]}}
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="ui-g">
+                <div class="ui-g-4">
+                    <label for="total">Total</label>
+                </div>
+                <div class="ui-g-8">
+                    <label id="total">S/.   {{total}}</label>
+                </div>
+            </div>
+        </ng-template>
+    </p-table>
+</p-card>

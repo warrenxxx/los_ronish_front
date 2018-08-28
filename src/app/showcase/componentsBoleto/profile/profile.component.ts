@@ -13,15 +13,11 @@ export class ProfileComponent implements OnInit {
     enviroment=environment;
   constructor( private messageService:MessageService ,private profileService:ProfileService) { }
 
-  sexo=[
-      {name:'Hombre'},{name:'Mujer'},{name:'Otro'},{name:'Jhoel'}];
   currentUser:UserModel;
-  sexoescogido;
 
     uploadedFiles: any[] = [];
   ngOnInit() {
       this.currentUser=JSON.parse( localStorage.getItem(environment.currentUser)) as UserModel;
-        this.sexoescogido={name:this.currentUser.sexo};
   }
     onUpload(event) {
         for(let file of event.files)
@@ -31,11 +27,11 @@ export class ProfileComponent implements OnInit {
     }
 
     actualizar(){
-//        this.currentUser.sexo=this.currentUser.sexo["name"];
         this.profileService.actualizarUser(this.currentUser).subscribe(e=>{
-            localStorage.setItem(environment.currentUser,JSON.stringify(this.currentUser));
-            this.messageService.add({severity: 'Info', summary: 'Exito', detail: ''});
+           localStorage.setItem(environment.currentUser,JSON.stringify(this.currentUser));
             location.reload();
+            this.messageService.add({severity: 'Info', summary: 'Exito', detail: JSON.stringify(e)});
+
         },err=>{
             this.messageService.add({severity: 'Error', summary: 'No se pudo actualizar', detail: ''});
         })

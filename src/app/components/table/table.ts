@@ -1025,7 +1025,8 @@ export class Table implements OnInit, AfterContentInit, BlockableUI {
         if(this.filterTimeout) {
             clearTimeout(this.filterTimeout);
         }
-        
+        console.log(this.filters)
+        console.log(this.filters[field])
         if (!this.isFilterBlank(value)) {
             this.filters[field] = { value: value, matchMode: matchMode };
         } else if (this.filters[field]) {
