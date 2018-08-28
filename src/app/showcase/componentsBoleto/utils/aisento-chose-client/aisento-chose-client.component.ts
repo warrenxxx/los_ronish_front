@@ -13,7 +13,11 @@ export class AisentoChoseClientComponent implements OnInit, OnChanges {
 
     constructor() {
     }
-
+    titles=[
+        "Primero Piso",
+        "Segundo Piso",
+        "Tercer Piso"
+    ];
     @Input()
     entrada: any[] = JSON.parse(this.gg);
 

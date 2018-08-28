@@ -3,7 +3,7 @@
 <button (click)="ACT2()">Generar Nuevo</button>
 <button (click)="enviarDatos()"> Oks</button>
 <p-card title="{{titles[i]}}" *ngFor="let pisos of details2; let i = index">
-    <div class="ui-g-nopad">
+    <div class="ui-g">
         <div *ngFor="let col of pisos" class="ui-g-1 " >
             <div *ngFor="let asiento of col">
                 <div *ngIf="asiento.type!='diseable';else els">
