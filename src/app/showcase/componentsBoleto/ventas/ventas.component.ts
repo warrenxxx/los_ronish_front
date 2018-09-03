@@ -136,7 +136,6 @@ export class VentasComponent implements OnInit {
     }
 
     enviarIda(x) {
-        console.log(x)
         this.reservadosIda=x;
     }
 }

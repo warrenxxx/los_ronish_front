@@ -1,31 +1,38 @@
 <p-button (click)="enviarDatos()" label="Oks"></p-button>
 
-<div style="background-image: url('https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&h=350')">
+<div>
     <p-card title="{{titles[i]}}" *ngFor="let pisos of details2; let i = index;">
-
-        <div class="ui-g">
-            <div *ngFor="let col of pisos" class="ui-g-1 " >
-                <div *ngFor="let asiento of col">
-                    <div *ngIf="asiento.type!='diseable'   ;else els">
-                        <p-toggleButton
-                            onLabel="{{asiento['num']}}"
-                            [style]="{'height':'45px','width':'70px'}"
-                            offLabel="{{asiento['num']}}"
-                            icon="pi pi-check"
-                            [(ngModel)]="asiento['porReservar']"
-                            [disabled]="asiento['reserved']"
-                            (onChange)="handleChange($event)"
-                        ></p-toggleButton>
+        <div style="border-style: solid; border-radius: 5px;" >
+            <div class="ui-g">
+                <div *ngFor="let col of pisos" class="ui-g-1 " >
+                    <div *ngFor="let asiento of col">
+                        <div *ngIf="asiento.type!='diseable'   ;else els">
+                            <app-button-image
+                                [isActive]="asiento['porReservar']"
+                                [diseable]="asiento['reserved']"
+                                [id]="asiento['num']"
+                                (enviar)="cambioUnbotos($event)"
+                            ></app-button-image
+                            >
+                            <!--<p-toggleButton-->
+                            <!--onLabel="{{asiento['num']}}"-->
+                            <!--[style]="{'height':'45px','width':'70px'}"-->
+                            <!--offLabel="{{asiento['num']}}"-->
+                            <!--icon="pi pi-check"-->
+                            <!--[(ngModel)]="asiento['porReservar']"-->
+                            <!--[disabled]="asiento['reserved']"-->
+                            <!--(onChange)="handleChange($event)"-->
+                            <!--&gt;</p-toggleButton>-->
+                        </div>
+                        <ng-template #els >
+                            <div style="height: 30px"></div>
+                        </ng-template>
                     </div>
-                    <ng-template #els >
-                        <div style="height: 30px"></div>
-                    </ng-template>
                 </div>
             </div>
         </div>
     </p-card>
 </div>
-
 <p-card>
     <p-table [columns]="cols" [value]="objects"  dataKey="vin">
         <ng-template pTemplate="header" let-columns>

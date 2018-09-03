@@ -1,3 +1,5 @@
+<kendo-pdf-export #pdf paperSize="A4" margin="2cm">
+
 <p-toast [style]="{marginTop: '80px'}"></p-toast>
 <p-table [columns]="cols" [value]="objetos" selectionMode="single" [(selection)]="objeto"
          (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="15">
@@ -44,9 +46,12 @@
     <ng-template pTemplate="summary" let-rowData>
         <div style="text-align:left">
             <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()" label="Add"></button>
+            <button type="button" pButton icon="fa fa-print" kendo-button (click)="pdf.saveAs('invoice.pdf')" label="To Pdf"></button>
+
         </div>
     </ng-template>
 </p-table>
+</kendo-pdf-export>
 
 <p-dialog header="{{title}} Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade">
     <div class="ui-g ui-fluid">
@@ -86,35 +91,19 @@
                         <input pInputText id="{{'id'+x.header}}" [(ngModel)]="objeto[x.field[0]][x.field[1]]"/>
                     </div>
                 </div>
-                <div *ngSwitchCase="'idterramoza'">
-                    <div class="ui-g-4">
-                        <label for="person">{{x.header}}</label>
-                    </div>
-                    <div class="ui-g-8">
-                        <app-combo-person id="person" (enviar)="cambioPersonsaTerramoza($event)"></app-combo-person>
-                    </div>
 
-                </div>
-                <div *ngSwitchCase="'idchoferes'">
-                    <div class="ui-g-4">
-                        <label for="chofer">{{x.header}}</label>
-                    </div>
-                    <div class="ui-g-8">
-                        <app-combo-person id="chofer" (enviar)="cambioPersonsaChofer($event)"></app-combo-person>
-                    </div>
-                </div>
 
             </div>
         </div>
-        <div class="ui-g-12">
-            <div class="ui-g-4">
-                <label for="chofer">Asientos</label>
-            </div>
-            <div class="ui-g-8">
-                <button (click)="dialogAsientos=true"> Edit Asientos</button>
-                <!--<app-combo-person id="chofer" (enviar)="cambioPersonsaChofer($event)"></app-combo-person>-->
-            </div>
-        </div>
+        <!--<div class="ui-g-12">-->
+            <!--<div class="ui-g-4">-->
+                <!--<label for="chofer">Asientos</label>-->
+            <!--</div>-->
+            <!--<div class="ui-g-8">-->
+                <!--<button (click)="dialogAsientos=true"> Edit Asientos</button>-->
+                <!--&lt;!&ndash;<app-combo-person id="chofer" (enviar)="cambioPersonsaChofer($event)"></app-combo-person>&ndash;&gt;-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
     <p-footer>
         <div class="ui-dialog-buttonpane ui-helper-clearfix">

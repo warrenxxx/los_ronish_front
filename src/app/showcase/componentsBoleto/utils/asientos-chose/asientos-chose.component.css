@@ -1,3 +1,9 @@
 .wbuton{
     width: 10px !important;
 }
+.image{
+    height:40em; background-size:cover; width:auto;
+    background-image:url('https://image.flaticon.com/icons/svg/1023/1023358.svg');
+
+    background-position:50% 50%;
+}

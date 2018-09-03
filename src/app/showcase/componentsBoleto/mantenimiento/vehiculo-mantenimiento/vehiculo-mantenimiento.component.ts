@@ -38,8 +38,6 @@ export class VehiculoMantenimientoComponent implements OnInit {
 //                {header: "Nro Asientos",        field: "NroAsientos"    ,type:"string"},
                 {header: "Tipo",        field: ["tipoVeiculo","tipo"]     ,type:"string2"},
                 {header: "Descripcion",        field: ["tipoVeiculo","Descripcion"]    ,type:"string2"},
-                {header: "Terramozas",        field: "terramozas"    ,type:"idterramoza" },
-            {header: "Choferes",        field: "choferes"    ,type:"idchoferes" },
 //            {header: "Asientos",        field: "asientos"    ,type:"asientos" },
             ];
 

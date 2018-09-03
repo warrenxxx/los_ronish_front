@@ -84,7 +84,6 @@ export class AisentoChoseClientComponent implements OnInit, OnChanges {
                     aux++;
                     if (k != 2) {
                         if (this.reservados.indexOf(aux) != -1) {
-
                             this.details2[i][j].push({
                                 num: this.entrada[aux]['num'] || '-',
                                 type: this.entrada[aux]['type'],
@@ -134,13 +133,13 @@ export class AisentoChoseClientComponent implements OnInit, OnChanges {
                 costo:this.precio
             })
 
-        })
+        });
         this.total=this.precio*this.res.length;
         this.enviarDatos()
     }
 
     enviarDatos() {
-        console.log(this.details2)
+
         this.enviar.emit(this.res);
     }
 
@@ -162,6 +161,29 @@ export class AisentoChoseClientComponent implements OnInit, OnChanges {
     objectsSelected:Costos[];
 
 
+    cambioUnbotos(x) {
+
+        let id=x.id;
+        let isActive=x.isActive;
+        console.log("dd",id,isActive);
+        if(isActive && this.res.indexOf(id)==-1){
+            this.res.push(id);
+        }
+        if(isActive==false && this.res.indexOf(id)!=-1){
+            let aux=this.res.indexOf(id);
+            this.res.splice(aux,1);
+        }
+        this.objects=[];
+        this.res.forEach(e=>{
+            this.objects.push({
+                asiento:e,
+                costo:this.precio
+            })
+
+        });
+        this.total=this.precio*this.res.length;
+        this.enviarDatos();
+    }
 }
 interface Costos {
     asiento,costo

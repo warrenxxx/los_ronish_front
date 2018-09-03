@@ -1,0 +1,22 @@
+.image{
+    height:10em;
+    background-size:cover; width:auto;
+    background-image:url('https://image.flaticon.com/icons/svg/1023/1023358.svg');
+    background-position:50% 50%;
+    width: 10em;
+}
+.image2{
+    background-image:url('https://image.flaticon.com/icons/svg/1023/1023358.svg');
+    color: #915642;
+    cursor: pointer;
+    font-weight: bold;
+    height: 20px;
+    padding-bottom: 2px;
+    width: 75px;
+    width: 75px;
+}
+.imageFull{
+    background-size:cover;
+    width: auto;
+    background-position:50% 50%;
+}

@@ -56,6 +56,8 @@ import {SplitButtonModule} from '../components/splitbutton/splitbutton';
 import { AisentoChoseClientComponent } from './componentsBoleto/utils/aisento-chose-client/aisento-chose-client.component';
 import { VentasComponent } from './componentsBoleto/ventas/ventas.component';
 import { SellVisaComponent } from './componentsBoleto/utils/sell-visa/sell-visa.component';
+import { ButtonImageComponent } from './componentsBoleto/utils/other/button-image/button-image.component';
+import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
 
 @NgModule({
     declarations: [
@@ -83,9 +85,11 @@ import { SellVisaComponent } from './componentsBoleto/utils/sell-visa/sell-visa.
         AsientosChoseComponent,
         AisentoChoseClientComponent,
         VentasComponent,
-        SellVisaComponent
+        SellVisaComponent,
+        ButtonImageComponent
     ],
     imports: [
+        PDFExportModule,
         ToggleButtonModule,
         SplitButtonModule,
         CardModule,

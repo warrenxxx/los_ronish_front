@@ -1,0 +1,44 @@
+
+
+<div *ngIf="!diseable ;else otro">
+
+    <div
+        [ngStyle]="{
+            'background-image': 'url(assets/img/' + img + ')',
+            'background-size': '100%',
+            'height': '35px',
+            'width':'35px',
+            'cursor':'pointer'
+            }"
+        (click)="cambio()"
+        (mouseenter) ="mouseEnter() "  (mouseleave) ="mouseLeave()"
+    >
+        {{id}}
+    </div>
+</div>
+
+<ng-template #otro>
+    <!--<div-->
+        <!--[ngStyle]="{-->
+            <!--'background-size': '100%',-->
+            <!--'height': '35px',-->
+            <!--'width':'35px',-->
+            <!--'cursor':'pointer'-->
+            <!--}"-->
+        <!--(click)="cambio()"-->
+        <!--(mouseenter) ="mouseEnter() "  (mouseleave) ="mouseLeave()"-->
+    <!--&gt;</div>-->
+    <div
+        [ngStyle]="{
+            'background-image': 'url(assets/img/' + item.img3 + ')',
+            'background-size': '100%',
+            'height': '35px',
+            'width':'35px',
+            'cursor':'pointer'
+            }"
+        (click)="cambio()"
+        (mouseenter) ="mouseEnter() "  (mouseleave) ="mouseLeave()"
+    >
+        {{id}}
+    </div>
+</ng-template>

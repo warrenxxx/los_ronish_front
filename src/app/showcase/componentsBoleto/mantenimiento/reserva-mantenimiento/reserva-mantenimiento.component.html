@@ -1,3 +1,5 @@
+<kendo-pdf-export #pdf paperSize="A4" margin="2cm">
+
 <p-toast [style]="{marginTop: '80px'}"></p-toast>
 <p-table [columns]="cols" [value]="objetos" selectionMode="single" [(selection)]="objeto" (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="15">
     <ng-template pTemplate="caption">
@@ -48,9 +50,12 @@
     <ng-template pTemplate="summary" let-rowData>
         <div style="text-align:left">
             <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()" label="Add"></button>
+            <button type="button" pButton icon="fa fa-print" kendo-button (click)="pdf.saveAs('invoice.pdf')" label="To Pdf"></button>
+
         </div>
     </ng-template>
 </p-table>
+</kendo-pdf-export>
 
 <p-dialog header="{{title}} Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade">
     <div class="ui-g ui-fluid">
