@@ -3,6 +3,7 @@ import {MessageService} from '../../../../components/common/messageservice';
 import {environment} from '../../../../../environments/environment';
 import {TerminalService} from '../../../service/terminal.service';
 import {TerminalModel} from '../../../modelsApp/terminalModel';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-terminal-mantenimiento',
@@ -11,7 +12,7 @@ import {TerminalModel} from '../../../modelsApp/terminalModel';
 })
 export class TerminalMantenimientoComponent implements OnInit {
 
-    constructor(private service:TerminalService,private messageService:MessageService) { }
+    constructor(private service:TerminalService,private messageService:MessageService,private route:Router) { }
     title="Terminal";
     enviroment=environment;
     objetos:TerminalModel[];
@@ -22,6 +23,7 @@ export class TerminalMantenimientoComponent implements OnInit {
     uploadedFiles=[];
 
     ngOnInit() {
+        if(!localStorage.getItem("currentUser") || JSON.parse(localStorage.getItem("currentUser"))['role']!='admin'){this.route.navigate(["/"])}
         this.objeto=TerminalModel.empty();
         this.act();
         this.cols = [

@@ -9,6 +9,7 @@ import {ItinerarioModel} from '../../../modelsApp/itinerarioModel';
 import {RefModel} from '../../../utils/RefModel';
 import {TerminalModel} from '../../../modelsApp/terminalModel';
 import {VehiculoModel} from '../../../modelsApp/vehiculoModel';
+import {Router} from '@angular/router';
 interface ColInt {
     header;
     field;
@@ -21,7 +22,7 @@ interface ColInt {
 })
 export class ItinerarioMantenimientoComponent implements OnInit {
 
-    constructor(private service:ItinerarioService,private messageService:MessageService,private personService:PersonService) { }
+    constructor(private service:ItinerarioService,private messageService:MessageService,private personService:PersonService,private route:Router) { }
     title="Itinerario";
     enviroment=environment;
     objetos:ItinerarioModel[];
@@ -36,6 +37,8 @@ export class ItinerarioMantenimientoComponent implements OnInit {
     colsId:ComBox[][]=[];
 
     ngOnInit() {
+        if(!localStorage.getItem("currentUser") || JSON.parse(localStorage.getItem("currentUser"))['role']!='admin'){this.route.navigate(["/"])}
+
         this.objeto=ItinerarioModel.empty();
         this.act();
         this.cols = [

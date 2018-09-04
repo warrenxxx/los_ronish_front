@@ -1,5 +1,3 @@
-
-
 <div *ngIf="!diseable ;else otro">
 
     <div
@@ -11,8 +9,7 @@
             'cursor':'pointer'
             }"
         (click)="cambio()"
-        (mouseenter) ="mouseEnter() "  (mouseleave) ="mouseLeave()"
-    >
+        (mouseenter) ="mouseEnter() "  (mouseleave) ="mouseLeave()">
         {{id}}
     </div>
 </div>
@@ -28,17 +25,13 @@
         <!--(click)="cambio()"-->
         <!--(mouseenter) ="mouseEnter() "  (mouseleave) ="mouseLeave()"-->
     <!--&gt;</div>-->
-    <div
-        [ngStyle]="{
+    <div [ngStyle]="{
             'background-image': 'url(assets/img/' + item.img3 + ')',
             'background-size': '100%',
             'height': '35px',
-            'width':'35px',
-            'cursor':'pointer'
+            'width':'35px'
             }"
-        (click)="cambio()"
-        (mouseenter) ="mouseEnter() "  (mouseleave) ="mouseLeave()"
-    >
+        >
         {{id}}
     </div>
 </ng-template>

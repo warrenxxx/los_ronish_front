@@ -8,6 +8,7 @@ import {ReservaService} from '../../../service/reserva.service';
 import {ReservaModel} from '../../../modelsApp/reservaModel';
 import {ItinerarioModel} from '../../../modelsApp/itinerarioModel';
 import {Person} from '../../../modelsApp/userModel';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-reserva-mantenimiento',
@@ -16,7 +17,7 @@ import {Person} from '../../../modelsApp/userModel';
 })
 export class ReservaMantenimientoComponent implements OnInit {
 
-    constructor(private service:ReservaService,private messageService:MessageService,private personService:PersonService) { }
+    constructor(private service:ReservaService,private messageService:MessageService,private personService:PersonService,private route:Router) { }
     title="Reserva";
     enviroment=environment;
     objetos:ReservaModel[];
@@ -30,7 +31,7 @@ export class ReservaMantenimientoComponent implements OnInit {
     colsId:ComBox[][]=[];
 
     ngOnInit() {
-        this.objeto=ReservaModel.empty();
+        if(!localStorage.getItem("currentUser") || JSON.parse(localStorage.getItem("currentUser"))['role']!='admin'){this.route.navigate(["/"])}        this.objeto=ReservaModel.empty();
         this.act();
         this.cols = [
             {header: "Pasajero",              field: "pasajero"           ,type:"pasajero"},

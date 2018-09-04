@@ -6,6 +6,7 @@ import {VehiculoModel} from '../../../modelsApp/vehiculoModel';
 import {PersonService} from '../../../service/person.service';
 import {ComBox} from '../../../modelsApp/com-box';
 import {Person} from '../../../modelsApp/userModel';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-vehiculo-mantenimiento',
@@ -14,7 +15,7 @@ import {Person} from '../../../modelsApp/userModel';
 })
 export class VehiculoMantenimientoComponent implements OnInit {
 
-    constructor(private service:VehiculoService,private messageService:MessageService,private personService:PersonService) { }
+    constructor(private service:VehiculoService,private messageService:MessageService,private personService:PersonService ,private route:Router) { }
     title="Vehiculo";
     enviroment=environment;
     objetos:VehiculoModel[];
@@ -31,7 +32,7 @@ export class VehiculoMantenimientoComponent implements OnInit {
     dialogAsientos=false;
 
     ngOnInit() {
-        this.objeto=VehiculoModel.empty();
+        if(!localStorage.getItem("currentUser") || JSON.parse(localStorage.getItem("currentUser"))['role']!='admin'){this.route.navigate(["/"])}        this.objeto=VehiculoModel.empty();
         this.act();
         this.cols = [
                 {header: "Modelo",              field: "modelo"         ,type:"string"},

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UserModel} from '../../../modelsApp/userModel';
 import {UserServiceService} from '../../../service/user-service.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-user-mantenimiento',
@@ -21,9 +22,10 @@ export class UserMantenimientoComponent implements OnInit {
 
     cols: any[];
 
-    constructor(private service: UserServiceService) { }
+    constructor(private service: UserServiceService,private route:Router) { }
 
     ngOnInit() {
+        if(!localStorage.getItem("currentUser") || JSON.parse(localStorage.getItem("currentUser"))['role']!='admin'){this.route.navigate(["/"])}
         this.service.find().subscribe(e=>{
             this.users=e;
         },err=>{});

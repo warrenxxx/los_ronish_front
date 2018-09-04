@@ -3,6 +3,7 @@ import {Person} from '../../../modelsApp/userModel';
 import {PersonService} from '../../../service/person.service';
 import {environment} from '../../../../../environments/environment';
 import {MessageService} from '../../../../components/common/messageservice';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-person',
@@ -11,7 +12,7 @@ import {MessageService} from '../../../../components/common/messageservice';
 })
 export class PersonComponent implements OnInit {
 
-  constructor(private service:PersonService,private messageService:MessageService) { }
+  constructor(private service:PersonService,private messageService:MessageService,private route:Router) { }
   title="Person";
   enviroment=environment;
   objetos:Person[];
@@ -21,6 +22,7 @@ export class PersonComponent implements OnInit {
     uploadedFiles=[];
 
   ngOnInit() {
+      if(!localStorage.getItem("currentUser") || JSON.parse(localStorage.getItem("currentUser"))['role']!='admin'){this.route.navigate(["/"])}
       this.objeto=Person.empty();
       this.act();
       this.cols = [

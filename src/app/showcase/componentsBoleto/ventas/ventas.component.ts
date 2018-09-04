@@ -7,6 +7,7 @@ import {RefModel} from '../../utils/RefModel';
 import {ReservaService} from '../../service/reserva.service';
 import {MessageService} from '../../../components/common/messageservice';
 import {Router} from '@angular/router';
+import {UserModel} from '../../modelsApp/userModel';
 
 @Component({
     selector: 'app-ventas',
@@ -31,8 +32,10 @@ export class VentasComponent implements OnInit {
     ida: Date;
     vuelta: Date;
 
+    currntUser:UserModel;
 
     ngOnInit() {
+        this.currntUser=JSON.parse(localStorage.getItem("currentUser"));
         this.cols = [
             {field: 'horario ', header: 'Horario'},
             {field: 'costo', header: 'Costo'},
@@ -103,7 +106,7 @@ export class VentasComponent implements OnInit {
         let user=JSON.parse(localStorage.getItem('currentUser'));
         if(this.reservadosIda.length>0)
         this.reservadosIda.forEach(e=>{
-            let x:ReservaModel=new ReservaModel("",new RefModel(user['id'],'person'),new Date(),new RefModel(this.itinerarioIda.id,"resserva"),true,e,null,null);;
+            let x:ReservaModel=new ReservaModel("",new RefModel(user['idPerson']['id'],'person'),new Date(),new RefModel(this.itinerarioIda.id,"resserva"),true,e,null,null);;
             this.reservaService.save(x).subscribe(e=>{
                 this.displayVentaIda=false;
                 this.messageService.add({severity:'success', summary:'Service Message', detail:'Exito'});
