@@ -1,5 +1,4 @@
 <kendo-pdf-export #pdf paperSize="A4" margin="2cm">
-
 <p-toast [style]="{marginTop: '80px'}"></p-toast>
 <p-table [columns]="cols" [value]="objetos" selectionMode="single" [(selection)]="objeto" (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="15">
     <ng-template pTemplate="caption">
@@ -100,7 +99,7 @@
                         <label for="pasajero">{{x.header}}</label>
                     </div>
                     <div class="ui-g-8">
-                        <app-combo-person-one [selected]="getPasajeroSelected()" id="pasajero"  (enviar)="cambiarPasajero($event)"></app-combo-person-one>
+                        <app-combo-person-one [selected]="objeto.idPersonaPasajero.id" id="pasajero"  (enviar)="cambiarPasajero($event)"></app-combo-person-one>
                     </div>
                 </div>
                 <div *ngSwitchCase="'itinerario'">
@@ -108,7 +107,7 @@
                         <label for="itinerario">{{x.header}}</label>
                     </div>
                     <div class="ui-g-8">
-                        <app-combo-itinerario-one id="itinerario" [selected]="getItinerarioSelected()" (enviar)="cambiarItinerario($event)" ></app-combo-itinerario-one>
+                        <app-combo-itinerario-one id="itinerario" [selected]="objeto.idItinerario.id" (enviar)="cambiarItinerario($event)" ></app-combo-itinerario-one>
                     </div>
                 </div>
 
