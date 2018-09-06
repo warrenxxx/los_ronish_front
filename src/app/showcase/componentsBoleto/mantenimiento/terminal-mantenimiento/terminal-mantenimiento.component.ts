@@ -23,7 +23,7 @@ export class TerminalMantenimientoComponent implements OnInit {
     uploadedFiles=[];
 
     ngOnInit() {
-        if(!localStorage.getItem("currentUser") || JSON.parse(localStorage.getItem("currentUser"))['role']!='admin'){this.route.navigate(["/"])}
+ //       if(!localStorage.getItem("currentUser") || JSON.parse(localStorage.getItem("currentUser"))['role']!='admin'){this.route.navigate(["/"])}
         this.objeto=TerminalModel.empty();
         this.act();
         this.cols = [
