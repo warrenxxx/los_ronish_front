@@ -2,7 +2,7 @@
 <kendo-pdf-export #pdf paperSize="A4" margin="2cm">
     <p-toast [style]="{marginTop: '80px'}"></p-toast>
 
-    <p-table [columns]="cols" [value]="objetos" selectionMode="single" [(selection)]="objeto"
+    <p-table #dt [columns]="cols" [value]="objetos" selectionMode="single" [(selection)]="objeto"
              (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="15">
         <ng-template pTemplate="caption">
             List of {{title}}
@@ -14,6 +14,11 @@
                     <p-sortIcon [field]="col.field"></p-sortIcon>
                 </th>
 
+            </tr>
+            <tr>
+                <th *ngFor="let col of columns" >
+                    <input  pInputText type="text" style="width: 100px" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                </th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData let-columns="columns">

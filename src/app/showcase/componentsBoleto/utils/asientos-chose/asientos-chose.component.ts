@@ -19,7 +19,8 @@ export class AsientosChoseComponent implements OnInit {
     tipos = [
         'normal',
         'cama',
-        'ejecutivo'
+        'ejecutivo',
+        'inactivo'
     ];
     @Input()
     nPisos: number = 2;

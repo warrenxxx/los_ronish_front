@@ -6,7 +6,8 @@ import {HttpHeaders} from '@angular/common/http';
 
 export const environment = {
     production: false,
-    host:"https://plissprofe.herokuapp.com",
+//    host:"https://plissprofe.herokuapp.com",
+    host:"http://localhost:8080",
     currentUser:"currentUser",
     headerGLobal:    {
         headers: new HttpHeaders({

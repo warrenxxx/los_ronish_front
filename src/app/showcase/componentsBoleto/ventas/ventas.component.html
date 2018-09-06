@@ -63,7 +63,7 @@
 </div>
 
 <p-dialog header="Realizar Venta" [(visible)]="displayVentaIda"  [baseZIndex]="10000">
-    <app-sell-visa (enviar)="realizarVentaIda($event)"> </app-sell-visa>
+    <app-sell-visa [apellido]="currntUser.person.apellido" [dni]="currntUser.person.dni" [nombre]="currntUser.person.nombre" [total]="itinerarioIda.costo" (enviar)="realizarVentaIda($event)"> </app-sell-visa>
 </p-dialog>
 
 
